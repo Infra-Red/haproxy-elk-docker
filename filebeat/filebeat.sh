@@ -4,7 +4,6 @@ ELK=
 wget -P /tmp/ https://download.elastic.co/beats/filebeat/filebeat_1.2.1_amd64.deb
 sudo dpkg -i /tmp/filebeat_1.2.1_amd64.deb
 curl -XPUT "http://${ELK}:9200/_template/filebeat?pretty" -d@/etc/filebeat/filebeat.template.json
-sudo mv /etc/filebeat/filebeat.yml /etc/filebeat/filebeat.yml.bak
 sudo cat > /etc/filebeat/filebeat.yml <<EOL
 filebeat:
   prospectors:
