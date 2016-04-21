@@ -1,5 +1,5 @@
 elk:
-  image: altoros/docker-elk
+  image: sebp/elk:es231_l231_k450
   ports:
     - "5601:5601"
     - "9200:9200"
