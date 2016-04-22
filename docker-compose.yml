@@ -1,4 +1,4 @@
-elk:
+docker-elk:
   image: sebp/elk:es231_l231_k450
   expose:
     - 5601
@@ -11,7 +11,7 @@ elk:
     - ./config/02-beats-input.conf:/etc/logstash/conf.d/02-beats-input.conf
     - ./config/12-json.conf:/etc/logstash/conf.d/12-json.conf
 
-haproxy:
+docker-haproxy:
   image: million12/haproxy:latest
   links:
     - docker-elk:elk
