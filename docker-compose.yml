@@ -1,10 +1,11 @@
 elk:
   image: sebp/elk:es231_l231_k450
+  expose:
+    - 5601
   ports:
-    - "127.0.0.1:5601:5601"
-    - "9200:9200"
-    - "5044:5044"
-    - "5000:5000"
+    - 9200:9200
+    - 5044:5044
+    - 5000:5000
   volumes:
     - /var/lib/elasticsearch:/var/lib/elasticsearch
     - ./config/02-beats-input.conf:/etc/logstash/conf.d/02-beats-input.conf
@@ -12,10 +13,9 @@ elk:
 
 haproxy:
   image: million12/haproxy:latest
+  links:
+    - docker-elk:elk
   volumes:
     - ./config/haproxy.cfg:/etc/haproxy/haproxy.cfg
-  net: "host"
-  expose:
-    - "80"
   ports:
     - "80:80"
